@@ -7,12 +7,12 @@
 
 .background a i:hover {
     cursor: pointer;
-    color: var(--color-hover);
+    color: var(--color-hover) !important;
     transition: color 0.2s;
   }
 
   .active {
-    color: var(--color-active);
+    color: var(--color-active) !important;
   }
 
   .menu  {

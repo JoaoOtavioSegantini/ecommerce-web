@@ -20,7 +20,7 @@ const StorefrontFooter: React.FC = () => {
                   <Col lg={1} xs={2}>
                     <Link href="https://www.facebook.com/onebitcode/">
                       <a target="_blank">
-                        <i className="fa fa-facebook" />
+                      <i className="fa-brands fa-facebook-f"></i>
                       </a>
                     </Link>
                   </Col>
@@ -28,32 +28,28 @@ const StorefrontFooter: React.FC = () => {
                   <Col lg={1} xs={2}>
                     <Link href="https://www.instagram.com/onebitcode/">
                       <a target="_blank">
-                        <i className="fa fa-instagram" />
-                      </a>
+                      <i className="fa-brands fa-instagram"></i>                      </a>
                     </Link>
                   </Col>
 
                   <Col lg={1} xs={2}>
                     <Link href="https://www.youtube.com/onebitcode">
                       <a target="_blank">
-                        <i className="fa fa-youtube" />
-                      </a>
+                      <i className="fa-brands fa-youtube"></i>                      </a>
                     </Link>
                   </Col>
 
                   <Col lg={1} xs={2}>
                     <Link href="https://twitter.com/onebitcode">
                       <a target="_blank">
-                        <i className="fa fa-twitter" />
-                      </a>
+                      <i className="fa-brands fa-twitter"></i>                      </a>
                     </Link>
                   </Col>
 
                   <Col lg={1} xs={2}>
                     <Link href="https://www.linkedin.com/in/leonardo-scorza-onebitcode-7aba352b/">
                       <a target="_blank">
-                        <i className="fa fa-linkedin" />
-                      </a>
+                      <i className="fa-brands fa-linkedin"></i>                      </a>
                     </Link>
                   </Col>
                 </Row>
