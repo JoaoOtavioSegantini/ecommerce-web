@@ -1,0 +1,23 @@
+.background {
+    background-color: var(--color-primary);
+    padding: 40px;
+    height: 100%;
+}
+
+.list {
+    margin-top: 50px;
+}
+
+.active {
+    color: var(--color-active) !important;
+  }
+  .active i {
+    color: var(--color-active) !important;
+  }
+
+  @media screen and (max-width: 990px) {
+    .background {
+      visibility: hidden;
+      height: 0;
+    }
+  }
