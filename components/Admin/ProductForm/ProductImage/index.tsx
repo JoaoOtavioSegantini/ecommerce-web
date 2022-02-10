@@ -13,7 +13,7 @@ interface ProductImageProps {
 
 const ProductImage: React.FC<ProductImageProps> = ({ setImage, productImage }) => {
   // esse estado é utilizado para armazenar a url da imagem que será exibida na tela
-  const [imageToShow, setImageToShow] = useState('/assets/product-image.png');
+  const [imageToShow, setImageToShow] = useState('/assets/product_image.png');
   // utilizarames um ref hook do react para podermos ter acesso mais fácil ao input do tipo file que esta escondido na tela.
   const imageInputRef = useRef(null);
 
