@@ -37,6 +37,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ handleSubmit, action = 'Adici
   const [systemRequirement, setSystemRequirement] = useState(1);
 
   const [productImage, setProductImage] = useState('');
+  const [featured, setFeatured] = useState('false');
 
   const product: Product = useSelector(state => state.product);
 
@@ -193,7 +194,7 @@ const ProductForm: React.FC<ProductFormProps> = ({ handleSubmit, action = 'Adici
                   as="select" 
                   className={styles.secundary_input}
                   onChange={handleCategoriesSelect}
-                  value={String(categories)}
+                  value={categories as unknown as string[]}
                   multiple
                   required
                 >
@@ -291,7 +292,23 @@ const ProductForm: React.FC<ProductFormProps> = ({ handleSubmit, action = 'Adici
               </Form.Group>
             </Form.Row>
 
-            <Form.Row>              
+            <Form.Row> 
+              <Form.Group as={Col} md={4} sm={12} className="p-2">
+                <Form.Label>Em Destaque</Form.Label>
+                <Form.Control
+                  as="select"
+                  className={styles.secundary_input}
+                  value={featured}
+                  onChange={
+                      (evt: React.ChangeEvent<HTMLSelectElement>) => 
+                        setFeatured(evt.target.value)
+                    }
+                  >
+                    <option value="false">Não</option>
+                    <option value="true">Sim</option>
+                </Form.Control>
+              </Form.Group>
+
             <Form.Group as={Col} md={4} sm={12} className="p-2">
                 <Form.Label>Preço</Form.Label>
                 <Form.Control
