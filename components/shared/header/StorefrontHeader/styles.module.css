@@ -4,3 +4,20 @@
     font-size: 1.4rem;
     font-weight: 500;
   }
+
+  .background i {
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  
+  .background i:hover {
+    color: var(--color-hover);
+  }
+  
+  .background i:active {
+    color: var(--color-active);
+  }
+
+  .hidden {
+    display: none;
+  }
