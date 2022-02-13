@@ -5,6 +5,8 @@ import Logo from "components/shared/Logo";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import ProductSearchService from "util/ProductSearchService";
+import LoggedService from "util/LoggedService";
+import Badge from "components/shared/Badge";
 
 const StorefrontHeader: React.FC = () => {
   const [search, setSearch] = useState("");
@@ -16,6 +18,11 @@ const StorefrontHeader: React.FC = () => {
         /Search?search=${search}&lentgh=12&page=1&order=price&direction=asc
     `);
   };
+
+  const handleUserRedirect = (): void => {
+    router.push(LoggedService.execute() ? "/Profile" : "Auth/Admin");
+  };
+
   return (
     <Row className={styles.background}>
       <Col md={6} className="mt-2">
@@ -61,10 +68,13 @@ const StorefrontHeader: React.FC = () => {
               </Col>
 
               <Col>
-                <i
-                  className="fa fa-shopping-cart"
-                  style={{ color: "var(--color-gray-light)" }}
-                />
+                <div>
+                  <i
+                    className="fa fa-shopping-cart"
+                    style={{ color: "var(--color-gray-light)" }}
+                  />
+                  <Badge>5</Badge>
+                </div>
               </Col>
 
               <Col>
@@ -73,6 +83,7 @@ const StorefrontHeader: React.FC = () => {
                     <i
                       className="fa fa-user-circle"
                       style={{ color: "var(--color-gray-light)" }}
+                      onClick={handleUserRedirect}
                     />
                   </a>
                 </Link>

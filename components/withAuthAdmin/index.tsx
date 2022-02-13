@@ -12,7 +12,8 @@ const withAuthAdmin = (Component) => {
     const loggedUser: User = useSelector(
       (state: AuthState) => state.auth.loggedUser
     );
-    const apiData: ApiData = JSON.parse(Cookie.get("@api-data")!);
+    const apiDataCookie = Cookie.get('@api-data');
+    const apiData: ApiData = apiDataCookie ? JSON.parse(apiDataCookie) : null;
 
     if (
       !loggedUser ||
@@ -21,7 +22,12 @@ const withAuthAdmin = (Component) => {
       !apiData["access-token"] ||
       apiData["access-token"] === ""
     ) {
-      router.push("/Auth/Login");
+      router.push({
+        pathname: '/Auth/Login',
+        query: {
+          callback: router.pathname
+        }
+      })
     }
     return <Component {...pageProps} />;
   };

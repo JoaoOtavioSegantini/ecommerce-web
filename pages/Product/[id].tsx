@@ -10,6 +10,8 @@ import ProductShowData from 'dtos/ProductShowData';
 import { toast } from "react-toastify";
 import { format, parseJSON } from "date-fns";
 import ProductShowService from 'services/productShow';
+import WishlistService from 'services/wishlist';
+import LoggedService from 'util/LoggedService';
 
 type Props = {
   params: {
@@ -28,6 +30,28 @@ const Product:  React.FC<ProductShowData> = ({ product }) => {
     toast.error("Erro ao obter o produto");
     console.log(error);
   }
+
+  const handleWishitem = async (): Promise<void> => {
+    if (LoggedService.execute()) {
+      try {
+        await WishlistService.add(data?.id!);
+        toast.info('Adicionado a sua lista de desejos!');
+      } catch (error) {
+        toast.error('Erro ao adicionar a sua lista de desejos!');
+        console.log(error);
+      }
+
+      return;
+    }
+
+    router.push({
+      pathname: '/Auth/Login',
+      query: {
+        callback: router.pathname.replace('[id]', data?.id.toString()!)
+      }
+    });
+  }
+
   return (
     <MainComponent>
       <Row className="mt-4 mb-4">
@@ -117,6 +141,7 @@ const Product:  React.FC<ProductShowData> = ({ product }) => {
                   action={"Favoritar"}
                   type_button="red"
                   className={styles.gray_button}
+                  onClick={handleWishitem}
                 />
               </Col>
 

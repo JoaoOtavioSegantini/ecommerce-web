@@ -4,17 +4,16 @@ import { useRouter } from "next/router";
 import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import styles from "./styles.module.css";
-import SignOutService from 'util/SignOutService'
-
+import SignOutService from "util/SignOutService";
 
 const AdminHeader: React.FC = () => {
   const router = useRouter();
 
-  const { name }: User = useSelector(state => state.auth.loggedUser);
+  const { name }: User = useSelector((state) => state.auth.loggedUser);
 
   return (
     <Row className={styles.background}>
-      <Col lg={6} xs={12} className={styles.menu}>
+      <Col xs={12} className={styles.menu}>
         <Link href="/Admin">
           <a>
             <i
@@ -87,29 +86,29 @@ const AdminHeader: React.FC = () => {
             />
           </a>
         </Link>
-        <Link href="/Auth/Login" >
-    <a 
-      onClick={SignOutService.execute} 
-      // mobile don't have click so we need to use onTouch events
-      onTouchEnd={() => SignOutService.execute()}
-    >
-      <i 
-      style={{        color:"var(--color-gray-light)" 
-    }}
-        className="ml-3 fa fa-signout" 
-      />
-    </a>
-  </Link>
-      </Col>
 
-      <Col lg={6} xs={3} className={styles.profile}>
-        <div className="float-right">
-          <span className={styles.name}>{name}</span>
-          <i
-            className="fa fa-user-circle"
-            style={{ color: "var(--color-gray-light)" }}
-          />
-        </div>
+        <Link href="/Auth/Login">
+          <a
+            onClick={SignOutService.execute}
+            // mobile don't have click so we need to use onTouch events
+            onTouchEnd={() => SignOutService.execute()}
+          >
+            <i
+              style={{ color: "var(--color-gray-light)" }}
+              className="ml-3 fa fa-signout"
+            />
+          </a>
+        </Link>
+
+        <Link href="/Profile">
+          <a className={styles.profile}>
+            <span className={styles.name}>{name}</span>
+            <i
+              className="fa fa-user-circle"
+              style={{ color: "var(--color-gray-light)" }}
+            />
+          </a>
+        </Link>
       </Col>
     </Row>
   );

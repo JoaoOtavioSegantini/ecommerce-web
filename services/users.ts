@@ -30,6 +30,9 @@ const UsersService = {
       email,
       password,
     }),
+    update(user: User) {
+      return api.put(`/admin/v1/users/${user.id}`, { user: user });
+    },
 };
 
 export default UsersService;
