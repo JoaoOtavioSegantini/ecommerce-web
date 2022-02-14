@@ -7,14 +7,14 @@ interface TitleAdminPanelProps {
   title: String;
   path: String;
   icon?: string;
-  newPath: string;
+  newPath?: string;
 }
 
 const TitleAdminPanel: React.FC<TitleAdminPanelProps> = ({
   title,
   path,
   icon,
-  newPath
+ newPath = '#'
 }) => {
   return (
     <Row className="mt-4">

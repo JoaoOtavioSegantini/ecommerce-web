@@ -78,11 +78,11 @@ const LateralMenu: React.FC = () => {
           </a>
         </Link>
 
-        <Link href="/Admin/#">
-          <a>
+        <Link href="/Admin/Orders/List">
+          <a className={`${router.pathname === '/Admin/Orders/List' ? styles.active : ''}`}>
             <i
               style={{ color: "var(--color-gray-light)" }}
-              className={`mr-3 fa fa-dollar ${router.pathname === '/Admin/#' ? styles.active : ''}`}
+              className={`mr-3 fa fa-dollar`}
             />
             Financeiro
             <hr />

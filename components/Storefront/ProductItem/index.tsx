@@ -1,34 +1,28 @@
+import Game from "dtos/Game";
 import { HTMLAttributes } from "react";
 import { Col } from "react-bootstrap";
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
-const ProductItem: React.FC<HTMLAttributes<HTMLDivElement>> = ({...rest}) => {
+type ProductProps = {
+  product: Game;
+} & HTMLAttributes<HTMLDivElement>;
+
+const ProductItem: React.FC<ProductProps> = ({ product, ...rest }) => {
   return (
-    <Col 
-      className={styles.product}
-      {...rest}
-    >
+    <Col className={styles.product} {...rest}>
       <div>
-        <img 
-          src="https://meups.com.br/wp-content/uploads/2018/01/God-of-War-4-900x503.jpg" 
-          alt="Product Name" 
-          className="w-100"
-        />
+        <img src={product?.image_url} alt={product?.name} className="w-100" />
       </div>
 
       <div>
         <div>
-          <span>
-            God of War
-          </span>
+          <span>{product?.name}</span>
 
-          <span>
-            Rem assumenda illum voluptatibus doloribus illo.
-          </span>
+          <span>{product?.description}</span>
         </div>
       </div>
     </Col>
   );
-}
+};
 
-export default ProductItem; 
+export default ProductItem;
