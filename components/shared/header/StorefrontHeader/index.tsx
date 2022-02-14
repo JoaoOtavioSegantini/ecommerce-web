@@ -4,14 +4,19 @@ import { Row, Col, InputGroup, FormControl } from "react-bootstrap";
 import Logo from "components/shared/Logo";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import ProductSearchService from "util/ProductSearchService";
 import LoggedService from "util/LoggedService";
 import Badge from "components/shared/Badge";
+import CartModal from "components/Storefront/CartModal";
+import { useSelector } from 'react-redux';
+import ProductShow from 'dtos/ProductShow';
+
 
 const StorefrontHeader: React.FC = () => {
   const [search, setSearch] = useState("");
+  const [showCartModal, setShowCartModal] = useState(false);
 
   const router = useRouter();
+  const cartProducts: ProductShow[] = useSelector(state => state.cartProducts);
 
   const handleSearch = (): void => {
     router.push(`
@@ -68,12 +73,21 @@ const StorefrontHeader: React.FC = () => {
               </Col>
 
               <Col>
-                <div>
+              <div className={styles.cart_container}>
                   <i
                     className="fa fa-shopping-cart"
                     style={{ color: "var(--color-gray-light)" }}
+                    onClick={() => setShowCartModal(!showCartModal)}
+
                   />
-                  <Badge>5</Badge>
+                  {
+                    cartProducts?.length > 0 &&
+                    <Badge>{cartProducts.length}</Badge>
+                  }
+                  {
+                     cartProducts?.length > 0 && showCartModal &&
+                      <CartModal searchPage={router.pathname === '/Search'} />
+                  }
                 </div>
               </Col>
 

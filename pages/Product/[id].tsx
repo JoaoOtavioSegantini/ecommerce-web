@@ -6,25 +6,29 @@ import MainComponent from "components/shared/MainComponent";
 import { Badge, Col, Row } from "react-bootstrap";
 import { useRouter } from "next/router";
 import useSwr from "swr";
-import ProductShowData from 'dtos/ProductShowData';
+import ProductShowData from "dtos/ProductShowData";
 import { toast } from "react-toastify";
 import { format, parseJSON } from "date-fns";
-import ProductShowService from 'services/productShow';
-import WishlistService from 'services/wishlist';
-import LoggedService from 'util/LoggedService';
+import ProductShowService from "services/productShow";
+import WishlistService from "services/wishlist";
+import LoggedService from "util/LoggedService";
+import { useDispatch } from "react-redux";
+import { addCartProduct } from "../../store/modules/storefront/cartProducts/reducer";
 
 type Props = {
   params: {
-    id: string
-  }
-}
-const Product:  React.FC<ProductShowData> = ({ product }) => {
+    id: string;
+  };
+};
+const Product: React.FC<ProductShowData> = ({ product }) => {
   const router = useRouter();
   const { data, error } = useSwr(
-    `/storefront/v1/products/${router?.query?.id}`, 
-    ProductShowService.show, 
+    `/storefront/v1/products/${router?.query?.id}`,
+    ProductShowService.show,
     { fallbackData: product }
   );
+
+  const dispatch = useDispatch();
 
   if (error) {
     toast.error("Erro ao obter o produto");
@@ -35,9 +39,9 @@ const Product:  React.FC<ProductShowData> = ({ product }) => {
     if (LoggedService.execute()) {
       try {
         await WishlistService.add(data?.id!);
-        toast.info('Adicionado a sua lista de desejos!');
+        toast.info("Adicionado a sua lista de desejos!");
       } catch (error) {
-        toast.error('Erro ao adicionar a sua lista de desejos!');
+        toast.error("Erro ao adicionar a sua lista de desejos!");
         console.log(error);
       }
 
@@ -45,12 +49,12 @@ const Product:  React.FC<ProductShowData> = ({ product }) => {
     }
 
     router.push({
-      pathname: '/Auth/Login',
+      pathname: "/Auth/Login",
       query: {
-        callback: router.pathname.replace('[id]', data?.id.toString()!)
-      }
+        callback: router.pathname.replace("[id]", data?.id.toString()!),
+      },
     });
-  }
+  };
 
   return (
     <MainComponent>
@@ -150,6 +154,7 @@ const Product:  React.FC<ProductShowData> = ({ product }) => {
                   icon={"fa fa-cart-plus"}
                   action={"Comprar"}
                   type_button="blue"
+                  onClick={() => dispatch(addCartProduct(data!))}
                 />
               </Col>
             </Row>
@@ -196,7 +201,9 @@ const Product:  React.FC<ProductShowData> = ({ product }) => {
 };
 
 export async function getServerSideProps({ params }: Props) {
-  const product = await ProductShowService.show(`/storefront/v1/products/${params.id}`);
+  const product = await ProductShowService.show(
+    `/storefront/v1/products/${params.id}`
+  );
   return { props: product };
 }
 
