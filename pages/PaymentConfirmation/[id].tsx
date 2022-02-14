@@ -14,6 +14,7 @@ import { useRouter } from "next/router";
 
 import OrderService from "services/order";
 import { toast } from "react-toastify";
+import OrderDetail from "components/shared/OrderDetail";
 
 const PaymentConfirmation: React.FC = () => {
   const router = useRouter();
@@ -56,41 +57,7 @@ const PaymentConfirmation: React.FC = () => {
         </div>
       </div>
 
-      <BlueBackground>
-        <strong>PRODUTO</strong>
-        <strong className="float-right">VALOR</strong>
-        {data?.line_items?.map((item, index) => (
-          <div key={index}>
-            <hr className={styles.line} />
-
-            <Row className={styles.product}>
-              <Col sm={3} xs={12} className="text-center">
-                <img src={item?.image_url} alt={item?.product} />
-              </Col>
-
-              <Col sm={7} xs={9}>
-                <strong className={styles.product_name}>{item?.product}</strong>
-
-                <div>
-                  {item?.categories?.map((category, index) => (
-                    <Badge
-                      key={index}
-                      variant="primary ml-1"
-                      className={styles.primary_badge}
-                    >
-                      {category}
-                    </Badge>
-                  ))}
-                </div>
-              </Col>
-
-              <Col sm={2} xs={3} className="text-center">
-                <strong className={styles.price}> {item?.payed_price}</strong>
-              </Col>
-            </Row>
-          </div>
-        ))}
-      </BlueBackground>
+      <OrderDetail items={data?.line_items!}/>
 
       <Row className="mt-4 mb-4">
         <Col>

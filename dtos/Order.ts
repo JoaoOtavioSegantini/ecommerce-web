@@ -1,11 +1,5 @@
-interface OrderItem {
-    quantity: number;
-    payed_price: number;
-    product: string;
-    categories: string[];
-    image_url: string;
-  }
-  
+import OrderItem from './OrderItem';
+
   export default interface Order {
     id: number;
     payment_type: string;
