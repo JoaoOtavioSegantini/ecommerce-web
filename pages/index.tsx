@@ -30,7 +30,7 @@ const Storefront: React.FC<StoreFrontProps> = ({ products }) => {
       <Carousel className={styles.carousel}>
         {featured?.slice(0, 3)?.map((product) => (
           <Carousel.Item
-            key={product.id}
+            key={product.name}
             onClick={() => router.push(`/Product/${product.id}`)}
             className={styles.carousel_item}
           >
