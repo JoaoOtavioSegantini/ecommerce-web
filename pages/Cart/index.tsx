@@ -204,6 +204,7 @@ const Cart: React.FC = () => {
                 action="Continuar Comprando"
                 icon={"fa fa-arrow-left"}
                 type_button="blue"
+                onClick={() => router.back()}
               />
             </div>
           </div>
