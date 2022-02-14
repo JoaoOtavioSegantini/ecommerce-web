@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 import Document, {
   Html,
   Head,
@@ -27,6 +28,10 @@ export default class MyDocument extends Document {
             integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
             crossOrigin="anonymous"
             referrerPolicy="no-referrer"
+          />
+          <script
+            type="text/javascript"
+            src="https://sandbox.boletobancario.com/boletofacil/wro/direct-checkout.min.js"
           />
         </Head>
         <body>
